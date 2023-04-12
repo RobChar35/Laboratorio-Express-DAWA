@@ -1,0 +1,17 @@
+<%- include('layout') %>
+
+<div class="card" style="width: 18rem; margin: 0 auto; min-width: 30vw;">
+    <div class="card-body">
+        <h3 class="card-title">Metodo de pago</h3>
+
+        <form action="/posttotal" method="post">
+            <input class="form-check-input" type="radio" name="pago" value="credito" id="pago">
+            <label class="form-label" for="credito">Credito</label> <br>
+        
+            <input class="form-check-input" type="radio" name="pago" value="efectivo" id="pago">
+            <label class="form-label" for="efectivo">Efectivo</label> <br>
+        
+            <button style="margin-top: 20px;" type="submit" class="btn btn-success">Siguiente</button>
+        </form>
+    </div>
+</div>

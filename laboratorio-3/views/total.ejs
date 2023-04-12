@@ -1,0 +1,27 @@
+<%- include('layout') %>
+
+<div class="card" style="width: 18rem; margin: 0 auto; min-width: 30vw;">
+    <div class="card-body">
+        <h3 class="card-title"><%= title %></h3>
+        <label class="form-label">Curso seleccionado: <%= curso %></label>
+
+        <h3 class="card-title">Módulos seleccionados:</h3>
+        <ul class="list-group">
+            <% for (let i = 0; i < modulos.length; i++) { %>
+                <li class="list-group-item"><%= modulos[i] %></li>
+            <% } %>
+        </ul>
+
+        <label class="form-label" style="margin-top: 20px;">Precio por módulo: S/ <%= precio %></label> <br>
+        <% if (descuento > 0) { %>
+            <label class="form-label">Descuento por pago en efectivo (10%): S/ <%= descuento %></label> <br>
+        <% } %>
+        <label class="form-label">Total a pagar: S/ <%= total %></label> <br>
+        <label class="form-label">Método de pago: <%= pago %></label>
+        
+        <form action="/" method="get">
+            <button style="margin-top: 20px;" type="submit" class="btn btn-primary">Volver al inicio</button>
+        </form>
+    </div>
+    
+</div>

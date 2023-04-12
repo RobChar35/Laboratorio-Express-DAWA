@@ -1,0 +1,20 @@
+<%- include('layout') %>
+
+<div class="card" style="width: 18rem; margin: 0 auto; min-width: 30vw;">
+    <div class="card-body">
+        <h3 class="card-title">Nivel para el modulo</h3>
+        
+        <label class="form-label">Curso seleccionado: <%= curso %></label> <br>
+        <label class="form-label">Precio por módulo: S/ <%= precio %></label>
+
+        <form action="/postpago" method="post">
+            <h3 class="card-title">Selecciona los módulos que llevarás:</h3>
+            <ul class="list-group">
+            <% for (let i = 0; i < modulos.length; i++) { %>
+                <li class="list-group-item"><input class="form-check-input" type="checkbox" name="modulos" value="<%= modulos[i] %>" checked> <%= modulos[i] %></li>
+            <% } %>
+            </ul>
+            <button style="margin-top: 20px;" type="submit" class="btn btn-success">Siguiente</button>
+        </form>
+    </div>
+</div>

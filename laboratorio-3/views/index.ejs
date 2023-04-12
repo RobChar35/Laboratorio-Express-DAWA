@@ -1,0 +1,17 @@
+<%- include('layout') %>
+
+<div class="card" style="width: 18rem; margin: 0 auto; min-width: 30vw;">
+  <div class="card-body">
+    <h3 class="card-title">Lista de cursos</h3>
+
+    <form action="/postcursos" method="post">
+      <label class="form-label" for="curso">Selecciona un curso:</label>
+      <select class="form-select" id="curso" name="curso">
+        <option value="java">Java</option>
+        <option value="php">PHP</option>
+        <option value="dotnet">.NET</option>
+      </select>
+      <button style="margin-top: 20px;" type="submit" class="btn btn-success">Siguiente</button>
+    </form>
+  </div>
+</div>
