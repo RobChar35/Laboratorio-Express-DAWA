@@ -8,12 +8,15 @@ const fs = require('fs');
 var parametros = []
 var valores = []
 
+var arreglo_parametros = []
+
 http.createServer((req, res) => {
     fs.readFile('./views/index.html', (err, html) => {
         var html_string = html.toString()
 
         if (req.url.indexOf('?') > 0) {
             var url_data = req.url.split('?')
+            // var arreglo_parametros = url_data[1].split('&')
             arreglo_parametros = url_data[1].split('&')
         }
 
@@ -33,4 +36,6 @@ http.createServer((req, res) => {
         res.write(html_string)
         res.end()
     })
-}).listen(8080)
+}).listen(8080, () => {
+    console.log("Server running at http://localhost:8080/")
+})
