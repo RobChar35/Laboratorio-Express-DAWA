@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1>Bienvenido a TChat</h1>
+    <form action="/chat" method="post">
+        <label for="usuario1">Ingresa el nombre de usuario 1</label> <br>
+        <input type="text" name="username1" id="">
+
+        <label for="usuario1-perfil">Ingresa una foto de perfil</label> 
+        <input type="file" src="" name="username1Profile" id="imagen1" alt=""> <br>
+
+        <label for="usuario2">Ingresa el nombre de usuario 2</label> <br>
+        <input type="text" name="username2" id="">
+
+        <label for="usuario2-perfil">Ingresa una foto de perfil</label> 
+        <input type="file" src="" name="username2Profile" id="imagen2" alt=""> <br>
+
+        <button type="submit">Ingresar al chat</button>
+    </form>
+</body>
+</html>
