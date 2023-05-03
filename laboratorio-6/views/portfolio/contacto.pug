@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+    div#centerportfolio.container.mt-4
+        div.card.border-0.shadow(style="width:500px")
+            div.card-body.p-4
+                h1 Contacto
+                form(method='POST' action='/contacto')
+                    div.form-group(style="margin-bottom:20px")
+                        label(for='nombre') Nombre
+                        input.form-control(type='text' name='nombre' required)
+                    div.form-group(style="margin-bottom:20px")
+                        label(for='correo') Correo electrónico
+                        input.form-control(type='email' name='correo' required)
+                    div.form-group(style="margin-bottom:20px")
+                        label(for='mensaje') Mensaje
+                        textarea.form-control(name='mensaje' rows='6' required)
+                    button.btn.btn-primary(type='submit') Enviar
