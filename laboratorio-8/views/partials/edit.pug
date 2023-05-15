@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Editar usuario
+    body 
+        h1 Editar Usuario 
+        form(action=`/users/update/${user._id}`, method='POST')
+            label(for='name') Nombre:
+            input#name(type='text', name='name', value=user.name, required)
+            
+            label(for='email') Email:
+            input#email(type='email', name='email', value=user.email, required)
+            
+            label(for='password') Contraseña:
+            input#password(type='password', name='password', placeholder='Dejar en blanco para mantener la misma contraseña')
+
+            button(type="submit") Actualizar usuario
+
+            if (typeof errors !== 'undefined' && errors.length > 0) 
+                ul 
+                    each error in errors
+                        li= error.msg
+
+            if flash.success 
+                p.success= flash.success 
+            else if flash.error 
+                p.error= flash.error
+        hr
+        a(href="/users") Regresar a la lista de usuarios 

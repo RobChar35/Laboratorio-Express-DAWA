@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title CRUD de usuarios
+    body 
+        h1 Usuarios 
+        form(action="/users", method="POST")
+            label(for="name") Nombre:
+            input#name(type="text", name="name", required)
+
+            label(for="email") Email:
+            input#email(type="email", name="email", required)
+
+            label(for="password") Contraseña:
+            input#password(type="password", name="password", required)
+
+            button(type="submit") Crear usuario 
+
+            if (typeof errors !== 'undefined' && errors.length > 0) 
+                ul 
+                    each error in errors
+                        li= error.msg
+
+            if flash.success 
+                p.success= flash.success 
+            else if flash.error 
+                p.error= flash.error 
+
+        hr
+        h2 Lista de Usuarios
+        ul 
+            each user in users
+                li= `${user.name} (${user.email})`
+                    a(href=`/users/edit/${user._id}`) Editar
+                    a(href=`/users/delete/${user._id}`) Eliminar
