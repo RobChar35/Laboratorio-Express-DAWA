@@ -1,38 +1,49 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title CRUD de usuarios
-    body 
-        h1 Usuarios 
-        form(action="/users", method="POST")
-            label(for="name") Nombre:
-            input#name(type="text", name="name", required)
+extends layout.pug 
 
-            label(for="email") Email:
-            input#email(type="email", name="email", required)
+block content
+    div.card(style="width: 500px; padding: 20px; margin: 0 auto; margin-top: 50px")
+        div.card-body 
+            h3.card-title(style="margin-top: 10px;margin-bottom: 20px;") Usuarios 
+            form(action="/users", method="POST")
+                
+                div.form-outline
+                    input#name.form-control(type="text", name="name", required)
+                    label.form-label(for="name") Nombre:
 
-            label(for="password") Contraseña:
-            input#password(type="password", name="password", required)
+                br
 
-            button(type="submit") Crear usuario 
+                div.form-outline
+                    input#email.form-control(type="email", name="email", required)
+                    label.form-label(for="email") Email:
+                
+                br
 
-            if (typeof errors !== 'undefined' && errors.length > 0) 
-                ul 
-                    each error in errors
-                        li= error.msg
+                div.form-outline
+                    input#password.form-control(type="password", name="password", required)
+                    label.form-label(for="password") Contraseña:
+                br
 
-            if flash.success 
-                p.success= flash.success 
-            else if flash.error 
-                p.error= flash.error 
+                button.btn.btn-primary(type="submit") Crear usuario 
 
-        hr
-        h2 Lista de Usuarios
-        ul 
-            each user in users
-                li= `${user.name} (${user.email})`
-                    a(href=`/users/edit/${user._id}`) Editar
-                    a(href=`/users/delete/${user._id}`) Eliminar
+                if (typeof errors !== 'undefined' && errors.length > 0) 
+                    ul.list-group.list-group-light(style="width: 420px; margin-top: 30px;") 
+                        each error in errors
+                            li.list-group-item.px-3.border-0.rounded-3.list-group-item-danger.mb-2= error.msg
+
+    if flash.success 
+        ul.list-group.list-group-light(style="width: 500px; padding: 10px; margin: 0 auto; margin-top: 20px")
+            li.list-group-item.px-3.border-0.rounded-3.list-group-item-primary.mb-2.success= flash.success 
+    else if flash.error 
+        ul.list-group.list-group-light
+            li.list-group-item.px-3.border-0.rounded-3.list-group-item-danger.mb-2.error= flash.error 
+
+    div.card(style="width: 800px; margin: 0 auto; margin-top: 50px")
+        div.card-body
+            h3.card-title(style="margin-top: 10px;margin-bottom: 20px;") Lista de Usuarios
+            ul.list-group.list-group-light 
+                each user in users
+                    li.list-group-item= `${user.name} (${user.email})`
+                        button.btn.btn-link(data-mdb-ripple-color="dark", style="margin-left:30px")
+                            a(href=`/users/edit/${user._id}`) Editar
+                        button.btn.btn-link(data-mdb-ripple-color="dark")
+                            a(href=`/users/delete/${user._id}`) Eliminar

@@ -1,32 +1,44 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Editar usuario
-    body 
-        h1 Editar Usuario 
-        form(action=`/users/update/${user._id}`, method='POST')
-            label(for='name') Nombre:
-            input#name(type='text', name='name', value=user.name, required)
-            
-            label(for='email') Email:
-            input#email(type='email', name='email', value=user.email, required)
-            
-            label(for='password') Contraseña:
-            input#password(type='password', name='password', placeholder='Dejar en blanco para mantener la misma contraseña')
+extends ../layout.pug
 
-            button(type="submit") Actualizar usuario
+block content
+    div.card(style="width: 500px; padding: 20px; margin: 0 auto; margin-top: 50px")
+        div.card-body 
+            h3.card-title(style="margin-top: 10px;margin-bottom: 20px;") Editar Usuario
+            form(action=`/users/update/${user._id}`, method='POST')
+                
+                div.form-outline
+                    input#name.form-control(type='text', name='name', value=user.name, required)
+                    label.form-label(for='name') Nombre:
 
-            if (typeof errors !== 'undefined' && errors.length > 0) 
-                ul 
-                    each error in errors
-                        li= error.msg
+                br
 
-            if flash.success 
-                p.success= flash.success 
-            else if flash.error 
-                p.error= flash.error
-        hr
-        a(href="/users") Regresar a la lista de usuarios 
+                div.form-outline
+                    input#email.form-control(type='email', name='email', value=user.email, required)
+                    label.form-label(for='email') Email:
+
+                br
+
+                div.form-outline
+                    input#password.form-control(type='password', name='password', placeholder='Dejar en blanco para mantener la misma contraseña')
+                    label.form-label(for='password') Contraseña:
+
+                br
+
+                button.btn.btn-success(type="submit") Actualizar usuario
+
+                if (typeof errors !== 'undefined' && errors.length > 0) 
+                    ul.list-group.list-group-light(style="width: 420px; margin-top: 30px;") 
+                        each error in errors
+                            li.list-group-item.px-3.border-0.rounded-3.list-group-item-danger.mb-2= error.msg
+
+            button.btn.btn-secondary(style="padding: 10px; margin: 0 auto; margin-top: 20px")
+                a(href="/users") Regresar a la lista de usuarios 
+
+    if flash.success 
+        ul.list-group.list-group-light(style="width: 500px; padding: 10px; margin: 0 auto; margin-top: 20px")
+            li.list-group-item.px-3.border-0.rounded-3.list-group-item-primary.mb-2.success= flash.success 
+    else if flash.error 
+        ul.list-group.list-group-light
+            li.list-group-item.px-3.border-0.rounded-3.list-group-item-danger.mb-2.error= flash.error 
+
+    
